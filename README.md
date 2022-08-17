@@ -7,7 +7,7 @@ Movie List, is an App  that provides list/detail view of movie items.
 Showing list of movies with pagination using [discover/movie](https://api.themoviedb.org/3/discover/movie). <br />
 Search with pagination using [search/movie](https://api.themoviedb.org/3/search/movie). <br />
 Showing movies genre [genre/movie/list](https://api.themoviedb.org/3/genre/movie/list). <br />
-Filtering movies by genre with pagination using [movie?with_genres={genreId}](https://api.themoviedb.org/3/discover/movie?with_genres={genreId}). <br />
+Filtering movies by genre with pagination using [discover/?with_genres={genreId}](https://api.themoviedb.org/3/discover/movie?with_genres={genreId}). <br />
 Showing details of the movie item in details screen using [movie/{movieId}](https://api.themoviedb.org/3/movie/{movieId}). <br />
 Mark the movies as favorite and save the user mark to local DB. <br />
 
