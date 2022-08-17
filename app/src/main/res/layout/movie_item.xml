@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="movie"
+            type="com.smart.movieslist.data.model.MovieModel" />
+
+        <variable
+            name="callback"
+            type="com.smart.movieslist.ui.moviesFragment.MoviesAdapter.MoviesAdapterCallback" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/vod_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{()-> callback.onItemClickListener(movie,position)}"
+        app:cardBackgroundColor="@color/backgroundColor">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/moveImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:placeholder="@{@drawable/movie_placeholder}"
+                app:srcUrl="@{movie.posterUrl}"
+                app:layout_constraintDimensionRatio="0.8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/movie_placeholder" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_gradient_dark"
+                app:layout_constraintBottom_toBottomOf="@id/moveImage"
+                app:layout_constraintDimensionRatio="5.5" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/moveImage"
+                app:layout_constraintBottom_toBottomOf="@id/moveImage"
+                android:layout_margin="8dp"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_star"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="5dp"
+                    android:gravity="center"
+                    android:text="@{Double.toString(movie.vote_average)}"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/moveImage">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:ellipsize="marquee"
+                    android:freezesText="true"
+                    android:gravity="start"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:maxWidth="180dp"
+                    android:maxEms="15"
+                    android:padding="5dp"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@{movie.title}"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/movie_fav"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{()-> callback.onFavoriteIconClick(movie,position)}"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:src="@{movie.fav?@drawable/ic_fav_red:@drawable/ic_fav_red_border}"
+
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>
